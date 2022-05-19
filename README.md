@@ -38,5 +38,5 @@ Feel free to try more seeds by tuning -n!
 We use 7 and 9 corresponding to K and L for default, which you can tune if necessary.
 
 ## Requirements
-* TorchOpt (Meta Optimizer)
+* TorchOpt (Meta Optimizer) <br/>
 pip install TorchOpt
