@@ -2,16 +2,16 @@
 ## Display
 
 - **A2C Baseline**
-    - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/A2C/results/shaded-cumulative-rewards.png/" width="700"/>
-    - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/A2C/results/shaded-rew-step-1.png/" width="700"/>
+     <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/A2C/results/shaded-cumulative-rewards.png/" width="700"/>
+     <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/A2C/results/shaded-rew-step-1.png/" width="700"/>
 - **Meta-Gradient Reinforcement Learning**
-    - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/MGRL/results/TorchOpt/cumulative-rewards.png/" width="700"/>
-    - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/MGRL/results/TorchOpt/rew-step.png/" width="700"/>
-    - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/MGRL/results/TorchOpt/entropy-rate.png/" width="700"/>
+     <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/MGRL/results/TorchOpt/cumulative-rewards.png/" width="700"/>
+     <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/MGRL/results/TorchOpt/rew-step.png/" width="700"/>
+     <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/MGRL/results/TorchOpt/entropy-rate.png/" width="700"/>
 - **Bootstrapped Meta-Learning**
-    - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/BMG/results/TorchOpt/cumulative-rewards.png/" width="700"/>
-    - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/BMG/results/TorchOpt/rew-step.png/" width="700"/>
-    - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/BMG/results/TorchOpt/entropy-rate.png/" width="700"/>
+     <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/BMG/results/TorchOpt/cumulative-rewards.png/" width="700"/>
+     <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/BMG/results/TorchOpt/rew-step.png/" width="700"/>
+     <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/BMG/results/TorchOpt/entropy-rate.png/" width="700"/>
 
 ## How To Use
 ### ***A2C***
