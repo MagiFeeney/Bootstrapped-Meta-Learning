@@ -16,23 +16,25 @@
 ## How To Use
 ### ***A2C***
 ```
-python main.py --algo A2C --num-seeds 1 --epsilon-EN 3e-1 --lr 1e-1 --gamma 0.99 --log-dir "logs" --max-steps 6400000
+$ python main.py --algo A2C --num-seeds 1 --epsilon-EN 3e-1 --lr 1e-1 --gamma 0.99 --log-dir "logs" --max-steps 6400000
 ```	  	     
 
 Both SGD and Adam are supported, however, it is not encouraged to use Adam otherwise you won't see desired result.
 
 ### ***MGRL***
 ```
-python main.py --algo MGRL --num-seeds 1 --lr 1e-1 --meta-lr 1e-4 -epsilon-meta 0.12 --gamma 0.99 --T 15 --max-steps 6400000
+$ python main.py --algo MGRL --num-seeds 1 --lr 1e-1 --meta-lr 1e-4 -epsilon-meta 0.12 --gamma 0.99 --T 15 --max-steps 6400000
 ```
 
 ### ***BMG***
 ```
-python main.py --algo BMG -num-seeds 1 --lr 1e-1 --meta-lr 1e-4 --gamma 0.99 --K 7 --L 9 --max-steps 6400000
+$ python main.py --algo BMG -num-seeds 1 --lr 1e-1 --meta-lr 1e-4 --gamma 0.99 --K 7 --L 9 --max-steps 6400000
 ```
 
 We use 7 and 9 corresponding to K and L for default, for details, you can redirect to the original paper [Bootstrapped Meta-Learning](https://arxiv.org/pdf/2109.04504.pdf)
 
 ## Requirements
 * torchopt (Meta Optimizer) <br/>
-pip install torchopt
+```
+$ pip install torchopt
+```
