@@ -28,10 +28,13 @@ def main():
     hidden_size = 256
     input_size   = 10
 
-    if args.algo == "BMG" or args.algo == "MGRL":
+    if args.algo == "BMG"
         feature_size = 32
         outer_iters = int(args.max_steps) // steps_per_rollout // (args.K + args.L)
-        
+    
+    if args.algo == "MGRL":
+        feature_size = 32
+        outer_iters = int(args.max_steps) // steps_per_rollout // (args.T)        
         
     print(f"Total {args.num_seeds} seeds to run:")
     for i in range(args.num_seeds):
