@@ -34,7 +34,6 @@ $ python main.py --algo BMG -num-seeds 1 --lr 1e-1 --meta-lr 1e-4 --gamma 0.99 -
 We use 7 and 9 corresponding to K and L for default, for details, you can redirect to the original paper [Bootstrapped Meta-Learning](https://arxiv.org/pdf/2109.04504.pdf)
 
 ## Requirements
-* torchopt (Meta Optimizer) <br/>
 ```
-$ pip install torchopt
+$ pip install requirements.txt
 ```
