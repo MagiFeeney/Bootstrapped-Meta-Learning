@@ -1,4 +1,4 @@
 gym
 matplotlib
 tqdm
-torchopt
+torchopt==0.4.3
