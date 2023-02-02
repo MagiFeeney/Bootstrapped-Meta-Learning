@@ -35,5 +35,5 @@ We use 7 and 9 corresponding to K and L for default, for details, you can redire
 
 ## Requirements
 ```
-$ pip install requirements.txt
+$ pip install -r requirements.txt
 ```
