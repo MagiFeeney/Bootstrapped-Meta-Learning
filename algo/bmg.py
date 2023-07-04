@@ -21,7 +21,7 @@ class BMG():
                     TB_loss, states = self.controller.rollout(self.inner_model, self.outer_model, True)
                     self.inner_optimizer.step(TB_loss)
                 else:
-                    loss = self.controller.rollout(self.inner_model, self.outer_model)
+                    loss, _, _ = self.controller.rollout(self.inner_model, self.outer_model)
                     self.inner_optimizer.step(loss)
 
                 if inner_iter == self.K - 1: 
