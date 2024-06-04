@@ -1,19 +1,11 @@
 # Bootstrapped Meta-Learning Replication
 ## Display
 
-**A2C Baseline**
-  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/a2c/shaded-cumulative-rewards.png/" width="700"/>
-  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/a2c/shaded-rew-step-1.png/" width="700"/>
-  
-**Meta-Gradient Reinforcement Learning**
-  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/mgrl/cumulative-rewards.png/" width="700"/>
-  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/mgrl/rew-step.png/" width="700"/>
-  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/mgrl/entropy-rate.png/" width="700"/>
-  
-**Bootstrapped Meta-Learning**
-  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/bmg/cumulative-rewards.png/" width="700"/>
-  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/bmg/rew-step.png/" width="700"/>
-  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/bmg/entropy-rate.png/" width="700"/>
+| **A2C Baseline** | **Meta-Gradient Reinforcement Learning** | **Bootstrapped Meta-Learning** |
+|-------------------|------------------------------------------|--------------------------------|
+| <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/a2c/shaded-cumulative-rewards.png" width="700"/> | <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/mgrl/cumulative-rewards.png" width="700"/> | <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/bmg/cumulative-rewards.png" width="700"/> |
+| <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/a2c/shaded-rew-step-1.png" width="700"/> | <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/mgrl/rew-step.png" width="700"/> | <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/bmg/rew-step.png" width="700"/> |
+|                   | <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/mgrl/entropy-rate.png" width="700"/> | <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/bmg/entropy-rate.png" width="700"/> |
 
 ## How To Use
 ### A2C
