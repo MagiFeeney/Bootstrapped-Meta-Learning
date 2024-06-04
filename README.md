@@ -2,18 +2,18 @@
 ## Display
 
 **A2C Baseline**
-  - ![](https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/a2c/shaded-cumulative-rewards.png =700x)
-  - ![](https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/a2c/shaded-rew-step-1.png =700x)
-
+  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/a2c/shaded-cumulative-rewards.png/" width="700"/>
+  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/a2c/shaded-rew-step-1.png/" width="700"/>
+  
 **Meta-Gradient Reinforcement Learning**
-  - ![](https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/mgrl/cumulative-rewards.png =700x)
-  - ![](https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/mgrl/rew-step.png =700x)
-  - ![](https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/mgrl/entropy-rate.png =700x)
-
+  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/mgrl/cumulative-rewards.png/" width="700"/>
+  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/mgrl/rew-step.png/" width="700"/>
+  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/mgrl/entropy-rate.png/" width="700"/>
+  
 **Bootstrapped Meta-Learning**
-  - ![](https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/bmg/cumulative-rewards.png =700x)
-  - ![](https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/bmg/rew-step.png =700x)
-  - ![](https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/raw/main/results/bmg/entropy-rate.png =700x)
+  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/bmg/cumulative-rewards.png/" width="700"/>
+  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/bmg/rew-step.png/" width="700"/>
+  - <img src="https://github.com/MagiFeeney/Bootstrapped-Meta-Learning/blob/main/results/bmg/entropy-rate.png/" width="700"/>
 
 ## How To Use
 ### A2C
