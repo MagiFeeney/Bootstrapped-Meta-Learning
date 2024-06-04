@@ -59,7 +59,7 @@ def plot(max_steps,
          algo_name,
          figsize=(10, 5)):
 
-    flag = False if algo_name == "A2C" else True
+    flag = False if algo_name == "A2C" else True # because A2C doesn't have meta learning
     
     store_dir = "images" # the directory stores images
     os.makedirs(store_dir, exist_ok=True)
@@ -84,16 +84,14 @@ def plot(max_steps,
     s = []
     s_err = []
 
-    interval = [log_interval] * len(ys)
+    interval = [log_interval] * 3
     interval[-1] = steps_per_rollout
     
     for j in range(len(ys)):
-        if j == len(ys) - 1 and not flag:
-            break
         y = np.mean(ys[j], axis=0)
         y = smooth(y, radius=smooth_radius)
         s.append(y)
-        s_err = np.std(ys[j], axis=0) / np.sqrt(len(ys[j]))
+        s_err.append(np.std(ys[j], axis=0) / np.sqrt(len(ys[j])))
         x.append(list(range(1, len(y) * interval[j] + 1, interval[j])))
     
     shade_flag = True if num_seeds > 1 else False
@@ -106,26 +104,18 @@ def plot(max_steps,
                 "xlim": [None, [0, 4e5 if max_steps >= 4e5 else max_steps], [0, 4e5 if max_steps >= 4e5 else max_steps]],
                 "ylim": [None, [-0.5, 0.5], None]}
     
-    if shade_flag:
-        for i in range(len(s)):
-            fig = plt.figure(figsize=figsize)
-            plt.plot(x[i], s[i], color = plt_info["color"][i])
+    for i in range(len(s)):
+        fig = plt.figure(figsize=figsize)
+        plt.plot(x[i], s[i], color = plt_info["color"][i])
+        if shade_flag:
             plt.fill_between(x[i], s[i] - s_err[i], s[i] + s_err[i], alpha=0.2, color=plt_info["fill_color"][i])
-            plt.xlim(plt_info["xlim"][i])
-            plt.ylim(plt_info["ylim"][i])            
-            plt.xlabel(plt_info["xlabel"][i])
-            plt.ylabel(plt_info["ylabel"][i])
-            fig.tight_layout()
-            plt.savefig(store_dir + "shaded" + plt_info["file_name"][i])
-            plt.close(fig)        
-    else:
-        for i in range(len(s)):
-            fig = plt.figure(figsize=figsize)
-            plt.plot(x[i], s[i], color = plt_info["color"][i])
-            plt.xlim(plt_info["xlim"][i])
-            plt.ylim(plt_info["ylim"][i])            
-            plt.xlabel(plt_info["xlabel"][i])
-            plt.ylabel(plt_info["ylabel"][i])
-            fig.tight_layout()
-            plt.savefig(store_dir + plt_info["file_name"][i])
-            plt.close(fig)        
+            prefix = "shaded"
+        else:
+            prefix = ""                
+        plt.xlim(plt_info["xlim"][i])
+        plt.ylim(plt_info["ylim"][i])
+        plt.xlabel(plt_info["xlabel"][i])
+        plt.ylabel(plt_info["ylabel"][i])
+        fig.tight_layout()
+        plt.savefig(store_dir + prefix + plt_info["file_name"][i])
+        plt.close(fig)        
