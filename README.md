@@ -29,7 +29,7 @@ We use 7 and 9 corresponding to K and L for default, for details, you can redire
 
 ## Visualization
 ```
-python plot.py --algo "BMG"
+python plot.py --algo BMG
 ```
 The results will be stored in `results` folder by default. To plot, please specify algorithm name that corresponds to the latest run.
 
