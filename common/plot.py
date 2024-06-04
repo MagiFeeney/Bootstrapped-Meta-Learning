@@ -43,117 +43,89 @@ def ts2xy(data_frame):
     return y
 
 
+def count_files_with_prefix(folder_path, prefix):
+    count = 0
+    for filename in os.listdir(folder_path):
+        if filename.startswith(prefix):
+            count += 1
+    return count
+
+
 def plot(max_steps,
          results_dir,
-         num_seeds,
          smooth_radius,
          log_interval,
          steps_per_rollout,
-         figsize=(10, 5),
-         flag=False):
- 
-    script_dir = os.path.dirname(os.path.abspath(results_dir))
-    store_dir = os.path.join(script_dir, "images/")   # the directory stores images
+         algo_name,
+         figsize=(10, 5)):
 
-    if not os.path.isdir(store_dir):
-        os.makedirs(store_dir)
+    flag = False if algo_name == "A2C" else True
+    
+    store_dir = "images" # the directory stores images
+    os.makedirs(store_dir, exist_ok=True)
 
     if flag:
         ys = [[], [], []]
     else:
         ys = [[], []]
 
+    num_seeds = count_files_with_prefix(os.path.join(results_dir, algo_name), "seed-")
+
     for i in range(num_seeds):
-        rd = results_dir + '/seed-' + str(i)
+        rd = results_dir + f'/{algo_name}/seed-' + str(i)
         data_frames = load_results(rd)
-        for i in range(len(ys)):
-            y = ts2xy(data_frames[i])
-            ys[i].append(y)
+        for j in range(len(ys)):
+            y = ts2xy(data_frames[j])
+            ys[j].append(y)
 
     ys = [np.vstack(y) for y in ys]
-
-    s1 = np.mean(ys[0], axis=0)
-    s2 = np.mean(ys[1], axis=0)
     
-    s1_err = np.std(ys[0], axis=0) / np.sqrt(len(ys[0]))
-    s2_err = np.std(ys[1], axis=0) / np.sqrt(len(ys[1]))
+    x = []
+    s = []
+    s_err = []
+
+    interval = [log_interval] * len(ys)
+    interval[-1] = steps_per_rollout
     
-    s1 = smooth(s1, radius=smooth_radius)
-    s2 = smooth(s2, radius=smooth_radius)
-
-    x1 = list(range(1, len(s1) * log_interval + 1, log_interval))
-    x2 = list(range(1, len(s2) * log_interval + 1, log_interval))
-
-    if flag: # entropy rate
-        s3 = np.mean(ys[2], axis=0)
-        s3_err = np.std(ys[2], axis=0) / np.sqrt(len(ys[2]))
-        s3 = smooth(s3, radius=smooth_radius)
-        x3 = list(range(1, len(s3) * steps_per_rollout + 1, steps_per_rollout))    
-
-    shade_flag = True if len(ys[0]) > 1 else False
-
-    fig1 = plt.figure(figsize=figsize)
-    plt.plot(x1, s1, color = "steelblue")
-    plt.xlabel('Steps')
-    plt.ylabel('Cumulative Reward')
-    fig1.tight_layout()
-    plt.savefig(store_dir + 'cumulative-rewards')
-    plt.close(fig1)
+    for j in range(len(ys)):
+        if j == len(ys) - 1 and not flag:
+            break
+        y = np.mean(ys[j], axis=0)
+        y = smooth(y, radius=smooth_radius)
+        s.append(y)
+        s_err = np.std(ys[j], axis=0) / np.sqrt(len(ys[j]))
+        x.append(list(range(1, len(y) * interval[j] + 1, interval[j])))
     
-    fig2 = plt.figure(figsize=figsize) 
-    plt.plot(x2, s2, color = "blue")
-    plt.xlim([0, 4e5 if max_steps >= 4e5 else max_steps])
-    plt.ylim([-0.5, 0.5])
-    plt.xlabel('Env Steps into Cycle')
-    plt.ylabel('Rew./Step')
-    fig2.tight_layout()
-    plt.savefig(store_dir + 'rew-step')
-    plt.close(fig2)
+    shade_flag = True if num_seeds > 1 else False
 
-    if flag:
-        fig3 = plt.figure(figsize=figsize) 
-        plt.plot(x3, s3, color = "mediumorchid")
-        plt.xlim([0, 4e5 if max_steps >= 4e5 else max_steps])
-        plt.xlabel('Env Steps into Cycle')
-        plt.ylabel('Entropy Rate')
-        fig3.tight_layout()
-        plt.savefig(store_dir + 'entropy-rate')
-        plt.close(fig3)
-
+    plt_info = {"xlabel": ['Steps', 'Env Steps into Cycle', 'Env Steps into Cycle'],
+                "ylabel": ['Cumulative Reward', 'Rew./Step', 'Entropy Rate'],
+                "color": ["steelblue", "blue", "mediumorchid"],
+                "fill_color": ["lightskyblue", "cornflowerblue", "violet"],
+                "file_name": ['cumulative-rewards', 'rew-step', 'entropy-rate'],
+                "xlim": [None, [0, 4e5 if max_steps >= 4e5 else max_steps], [0, 4e5 if max_steps >= 4e5 else max_steps]],
+                "ylim": [None, [-0.5, 0.5], None]}
+    
     if shade_flag:
-
-        fig4 = plt.figure(figsize=figsize) 
-        plt.plot(x1, s1, color = "steelblue")
-        plt.plot(s1 - s1_err, color = "cornflowerblue", linewidth=0.2)
-        plt.plot(s1 + s1_err, color = "cornflowerblue", linewidth=0.2)
-        plt.fill_between(x1, s1 - s1_err, s1 + s1_err, alpha=0.2, color = "lightskyblue")
-        plt.xlabel('Steps')
-        plt.ylabel('Cumulative Reward')
-        fig4.tight_layout()
-        plt.savefig(store_dir + 'shaded-cumulative-rewards')
-        plt.close(fig4)
-
-        
-        fig5 = plt.figure(figsize=figsize) 
-        plt.plot(x2, s2, color = "blue")
-        plt.fill_between(x2, s2 - s2_err, s2 + s2_err, alpha=0.2, color = "cornflowerblue")
-        plt.xlim([0, 4e5 if max_steps >= 4e5 else max_steps])
-        plt.ylim([-0.5, 0.5])
-        plt.xlabel('Env Steps into Cycle')
-        plt.ylabel('Rew./Step')
-        fig5.tight_layout()
-        plt.savefig(store_dir + 'shaded-rew-step')
-        plt.close(fig5)
-
-        if flag:
-            fig6 = plt.figure(figsize=figsize) 
-            plt.plot(x3, s3, color = "mediumorchid")
-            plt.fill_between(x3, s3 - s3_err, s3 + s3_err, alpha=0.2, color = "violet")
-            plt.xlim([0, 4e5 if max_steps >= 4e5 else max_steps])
-            plt.xlabel('Env Steps into Cycle')
-            plt.ylabel('Entropy Rate')
-            fig6.tight_layout()
-            plt.savefig(store_dir + 'shaded-entropy-rate')
-            plt.close(fig6)
-
-        
+        for i in range(len(s)):
+            fig = plt.figure(figsize=figsize)
+            plt.plot(x[i], s[i], color = plt_info["color"][i])
+            plt.fill_between(x[i], s[i] - s_err[i], s[i] + s_err[i], alpha=0.2, color=plt_info["fill_color"][i])
+            plt.xlim(plt_info["xlim"][i])
+            plt.ylim(plt_info["ylim"][i])            
+            plt.xlabel(plt_info["xlabel"][i])
+            plt.ylabel(plt_info["ylabel"][i])
+            fig.tight_layout()
+            plt.savefig(store_dir + "shaded" + plt_info["file_name"][i])
+            plt.close(fig)        
+    else:
+        for i in range(len(s)):
+            fig = plt.figure(figsize=figsize)
+            plt.plot(x[i], s[i], color = plt_info["color"][i])
+            plt.xlim(plt_info["xlim"][i])
+            plt.ylim(plt_info["ylim"][i])            
+            plt.xlabel(plt_info["xlabel"][i])
+            plt.ylabel(plt_info["ylabel"][i])
+            fig.tight_layout()
+            plt.savefig(store_dir + plt_info["file_name"][i])
+            plt.close(fig)        

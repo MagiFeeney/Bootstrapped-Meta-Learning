@@ -14,6 +14,11 @@ def get_args():
         default=6e6+4e5,
         help='max steps interacting with environment (default: 6.4M)')
     parser.add_argument(
+        '--steps-per-rollout',
+        type=int,
+        default=16,
+        help='steps per rollout (default: 16)')
+    parser.add_argument(
         '--use-cuda',
         action="store_true",
         default=False,
@@ -23,11 +28,6 @@ def get_args():
         type=int,
         default=0,
         help='Initial seed for generating random numbers (default: 0)')
-    parser.add_argument(
-        '--num-seeds',
-        type=int,
-        default=1,
-        help='The number of seeds to run (default: 1)')
     parser.add_argument(
         '--epsilon-EN',
         type=float,
@@ -86,12 +86,11 @@ def get_args():
     parser.add_argument(
         '--log-dir',
         type=str,
-        default="/logs/",
+        default="results/",
         help='log directory')
     
     args = parser.parse_args()
     
     return args
-
 
     args = parser.parse_args()
