@@ -1,5 +1,5 @@
-# Bootstrapped Meta-Learning Replication
-## Display
+# Bootstrapped Meta-Learning in PyTorch
+## Results
 
 | **A2C Baseline** | **Meta-Gradient Reinforcement Learning** | **Bootstrapped Meta-Learning** |
 |-------------------|------------------------------------------|--------------------------------|
